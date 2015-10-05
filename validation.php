@@ -14,7 +14,6 @@ if(	isset($_POST['username']) && isset($_POST['email']) && isset($_POST['passwor
 		header('Location: register.php');
 		$_SESSION['message'] = 'Erreur: username ou email déjà pris.';
 	}
-
 }else{
 	$_SESSION['message'] = 'Erreur : Formulaire incomplet';
 	header('Location: register.php');
