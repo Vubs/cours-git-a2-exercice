@@ -1,7 +1,7 @@
 <?php session_start();
 
-/******************************** 
-	 DATABASE & FUNCTIONS 
+/********************************
+	 DATABASE & FUNCTIONS
 ********************************/
 require('config/config.php');
 require('model/functions.fn.php');
@@ -14,20 +14,21 @@ require('model/functions.fn.php');
 if(isset($_POST['email']) && isset($_POST['password'])){
 	if(!empty($_POST['email']) && !empty($_POST['password'])){
 
-		// TODO
 
 		// Force user connection to access dashboard
-		userConnection($db, 'git@initiation.com', 'password');
-		
-		header('Location: dashboard.php');
+		if (userConnection($db, $_POST["email"], $_POST["password"])) {
+			header('Location: dashboard.php');
+		}else{
+			$error = 'Mauvaise combinaison !';
+		}
 
 	}else{
 		$error = 'Champs requis !';
 	}
 }
 
-/******************************** 
-			VIEW 
+/********************************
+			VIEW
 ********************************/
 include 'view/_header.php';
 include 'view/login.php';
